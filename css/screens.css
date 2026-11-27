@@ -167,3 +167,23 @@
 .cmp-custom-ctl .btn { width: var(--tap); padding: 0; font-size: 22px; flex: none; }
 .cmp-sel { flex: 1; min-width: 0; }
 .cmp-sel .input { padding: 0 6px; }
+
+/* 취침 전 안내 */
+.routine-head { font-size: 15px; color: var(--gold); margin-bottom: var(--space-3); }
+.routine-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.routine-step { display: flex; gap: var(--space-2); opacity: 0.55; }
+.routine-step.is-active, .routine-step.is-done { opacity: 1; }
+.routine-dot {
+  flex: none; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%;
+  border: 1.5px solid var(--card-line); display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--gold-ink);
+}
+.routine-step.is-done .routine-dot { background: var(--ivory-faint); border-color: var(--ivory-faint); }
+.routine-step.is-active .routine-dot { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 0 4px rgba(201, 178, 124, 0.2); }
+.routine-body { flex: 1; min-width: 0; }
+.routine-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-2); }
+.routine-top strong { font-size: 16px; font-weight: 600; }
+.routine-step.is-active .routine-top strong { color: var(--gold); }
+.routine-time { font-family: var(--font-brand); font-size: 16px; color: var(--ivory-dim); font-variant-numeric: tabular-nums; }
+.routine-body p { margin-top: 2px; font-size: 13px; color: var(--ivory-dim); }
+.routine-go { margin-top: var(--space-2); width: 100%; }

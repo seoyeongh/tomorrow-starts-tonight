@@ -2,6 +2,7 @@ import { getState, update } from "../store.js";
 import { calcPlan, wakeFor, formatTime, formatDuration, parseTime } from "../sleepMath.js";
 import { dialSvg, applyDrag } from "../dial.js";
 import { createWheel } from "../wheel.js";
+import { routineStatus, nowMinutes } from "../routine.js";
 
 let flash = ""; // 다음 화면에 한 번만 보여 줄 안내 문구
 
@@ -49,9 +50,67 @@ export function renderHome(root, ctx) {
       <button class="btn" data-act="compare">다른 수면 시간 비교</button>
       ${s.confirmed ? `<p class="plan-note" style="text-align:center">✓ 정해진 계획: ${formatTime(s.confirmed.bed)} 취침 → ${formatTime(s.confirmed.wake)} 기상</p>` : ""}
     </div>
+
+    ${s.confirmed ? `<h2 class="section-label" style="margin-top:var(--space-4)">취침 전 안내</h2><section class="card routine" id="routine"></section>` : ""}
   `;
 
   bindHome(root, ctx, s, plan);
+  startRoutine(root, ctx, s);
+}
+
+/* ---------- 취침 전 안내 (정해진 계획의 취침 시간 기준) ---------- */
+let routineTimer = null;
+
+function routineHtml(bed) {
+  const r = routineStatus(bed, nowMinutes());
+  const head =
+    r.activeIndex === 2
+      ? "지금은 취침 시간이에요"
+      : r.activeIndex >= 0
+        ? `취침까지 ${formatDuration(Math.max(0, r.until))} 남았어요`
+        : r.nextStart <= 720
+          ? `${formatDuration(r.nextStart)} 뒤에 안내가 시작돼요`
+          : "취침 시간이 가까워지면 안내해 드려요";
+  return `
+    <p class="routine-head">${head}</p>
+    <ol class="routine-list">
+      ${r.steps
+        .map(
+          (st) => `
+        <li class="routine-step is-${st.state}" ${st.state === "active" ? 'aria-current="step"' : ""}>
+          <span class="routine-dot" aria-hidden="true">${st.state === "done" ? "✓" : ""}</span>
+          <div class="routine-body">
+            <div class="routine-top"><strong>${st.title}</strong><span class="routine-time">${st.time}</span></div>
+            <p>${st.before ? `${st.before}분 전 · ` : "취침 시간 · "}${st.desc}</p>
+            ${st.action && st.state === "active" ? `<button class="btn btn-primary routine-go" data-routine-go="${st.action}">사운드 고르러 가기</button>` : ""}
+          </div>
+        </li>`
+        )
+        .join("")}
+    </ol>`;
+}
+
+function startRoutine(root, ctx, s) {
+  clearInterval(routineTimer);
+  routineTimer = null;
+  const box = root.querySelector("#routine");
+  if (!box || !s.confirmed) return;
+
+  const draw = () => {
+    box.innerHTML = routineHtml(s.confirmed.bed);
+    const go = box.querySelector("[data-routine-go]");
+    if (go) go.onclick = () => ctx.go(go.dataset.routineGo);
+  };
+  draw();
+  // 30초마다 카드만 갱신. 카드가 화면에서 사라지면 타이머도 멈춤
+  routineTimer = setInterval(() => {
+    if (!box.isConnected) {
+      clearInterval(routineTimer);
+      routineTimer = null;
+      return;
+    }
+    draw();
+  }, 30000);
 }
 
 function scheduleSection(s, plan, manualMode) {
