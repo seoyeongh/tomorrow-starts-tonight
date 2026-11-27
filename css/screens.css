@@ -1,0 +1,143 @@
+/* 공통 */
+.brand {
+  font-family: var(--font-brand);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin-bottom: var(--space-4);
+}
+.section-label {
+  font-size: 13px;
+  color: var(--ivory-faint);
+  margin: 0 0 var(--space-2);
+  letter-spacing: 0.04em;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.stack > * + * { margin-top: var(--space-2); }
+.muted { color: var(--ivory-dim); font-size: 14px; }
+
+/* 홈: 일정 */
+.sched-list { display: flex; flex-direction: column; gap: var(--space-2); }
+.sched {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--card);
+  border: 1px solid var(--card-line);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.sched-top { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-2); }
+.sched-name { font-size: 18px; font-weight: 600; overflow-wrap: anywhere; }
+.sched-time { font-size: 20px; color: var(--gold); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sched-sub { margin-top: 4px; font-size: 13px; color: var(--ivory-dim); }
+.sched.is-earliest { border-color: var(--gold); }
+.badge {
+  display: inline-block; margin-left: 8px; padding: 1px 8px;
+  border-radius: 999px; font-size: 11px; color: var(--gold-ink); background: var(--gold);
+  vertical-align: middle;
+}
+.empty {
+  border: 1px dashed var(--card-line);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-3);
+  text-align: center;
+  color: var(--ivory-dim);
+}
+.manual-wake { margin-top: var(--space-2); }
+
+/* 연결선 */
+.link-line {
+  display: flex; flex-direction: column; align-items: center;
+  margin: var(--space-3) 0;
+  color: var(--ivory-faint); font-size: 12px;
+}
+.link-line::before, .link-line::after {
+  content: ""; width: 1px; height: 18px; background: var(--card-line);
+}
+.link-line span { padding: 4px 0; }
+
+/* 홈: 수면 계획 */
+.plan { text-align: center; }
+.ring-wrap { position: relative; width: min(100%, 260px); aspect-ratio: 1; margin: var(--space-2) auto var(--space-3); }
+.ring-wrap svg { width: 100%; height: 100%; display: block; }
+.ring-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.ring-dur { font-family: var(--font-brand); font-size: 28px; font-weight: 500; letter-spacing: 0.04em; }
+.ring-sub { font-size: 12px; color: var(--ivory-faint); }
+.times { display: flex; justify-content: center; align-items: center; gap: var(--space-3); font-variant-numeric: tabular-nums; }
+.time-block small { display: block; font-size: 12px; color: var(--ivory-faint); }
+.time-block strong { font-family: var(--font-brand); font-size: 30px; font-weight: 500; letter-spacing: 0.04em; }
+.time-arrow { color: var(--ivory-faint); font-size: 20px; }
+.plan-note { margin-top: var(--space-2); font-size: 13px; color: var(--ivory-dim); }
+
+.stepper { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); margin: var(--space-3) 0; }
+.stepper .btn { width: var(--tap); padding: 0; font-size: 22px; }
+.stepper-val { text-align: center; }
+.stepper-val small { display: block; font-size: 12px; color: var(--ivory-faint); }
+.stepper-val strong { font-size: 18px; }
+
+.actions { display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-3); }
+
+/* 자리표시자 화면 */
+.placeholder { text-align: center; padding: var(--space-5) var(--space-3); }
+.placeholder h2 { font-size: 20px; margin-bottom: var(--space-1); }
+
+/* 시트 */
+.sheet-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.55); z-index: 20; }
+.sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 21;
+  max-width: 480px; margin: 0 auto;
+  max-height: 92dvh; overflow-y: auto;
+  background: var(--bg-soft);
+  border-top: 1px solid var(--card-line);
+  border-radius: 22px 22px 0 0;
+  padding: var(--space-4) var(--space-3) calc(var(--space-4) + env(safe-area-inset-bottom));
+}
+.sheet h2 { font-size: 18px; margin-bottom: var(--space-3); }
+.sheet [hidden], [hidden] { display: none !important; }
+.error { color: var(--danger); font-size: 13px; margin: -8px 0 var(--space-2); }
+
+/* 휠 피커 */
+:root { --wheel-item: 40px; }
+.wheels { display: flex; align-items: flex-end; justify-content: center; gap: var(--space-2); margin-top: var(--space-2); }
+.wheel-group { text-align: center; }
+.wheel-group small { display: block; font-size: 12px; color: var(--ivory-faint); margin-bottom: 6px; }
+.wheel-pair { display: flex; align-items: center; justify-content: center; gap: 2px; }
+.colon { font-family: var(--font-brand); font-size: 24px; color: var(--ivory-dim); padding-bottom: 3px; }
+.wheels .time-arrow { padding-bottom: 46px; }
+.wheel {
+  position: relative; width: 52px; height: calc(var(--wheel-item) * 3);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.4), #000 34%, #000 66%, rgba(0,0,0,.4));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.4), #000 34%, #000 66%, rgba(0,0,0,.4));
+}
+.wheel::before { /* 선택 칸 표시 띠 */
+  content: ""; position: absolute; left: 0; right: 0; top: var(--wheel-item); height: var(--wheel-item);
+  background: var(--bg-soft); border-top: 1px solid var(--card-line); border-bottom: 1px solid var(--card-line);
+  border-radius: 8px; z-index: 0;
+}
+.wheel-list {
+  position: relative; z-index: 1; height: 100%;
+  overflow-y: auto; scroll-snap-type: y mandatory; scrollbar-width: none; overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.wheel-list::-webkit-scrollbar { display: none; }
+.wheel-pad, .wheel-item { height: var(--wheel-item); }
+.wheel-item {
+  display: flex; align-items: center; justify-content: center; scroll-snap-align: center;
+  font-family: var(--font-brand); font-size: 22px; color: var(--ivory-faint); font-variant-numeric: tabular-nums;
+  cursor: pointer; user-select: none; -webkit-user-select: none;
+}
+.wheel-item.is-sel { color: var(--ivory); font-size: 28px; }
+.wheel-list:focus-visible { outline: none; }
+.wheel:focus-within::before { border-color: var(--gold); }
+.plan-flash { color: var(--gold); }

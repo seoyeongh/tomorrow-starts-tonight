@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0E1525" />
+  <title>Tomorrow starts tonight.</title>
+  <link rel="preload" href="fonts/GowunDodum-subset.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/screens.css" />
+</head>
+<body>
+  <div class="app">
+    <main id="screen" class="screen" aria-live="polite"></main>
+
+    <nav class="tabbar" aria-label="메인 메뉴">
+      <button class="tab" data-tab="home"><span class="tab-ico" aria-hidden="true">☾</span><span>오늘 밤</span></button>
+      <button class="tab" data-tab="compare"><span class="tab-ico" aria-hidden="true">⇄</span><span>비교</span></button>
+      <button class="tab" data-tab="sound"><span class="tab-ico" aria-hidden="true">♪</span><span>사운드</span></button>
+      <button class="tab" data-tab="log"><span class="tab-ico" aria-hidden="true">☀</span><span>기록</span></button>
+    </nav>
+  </div>
+
+  <!-- 일정 편집 시트 -->
+  <div id="sheet-backdrop" class="sheet-backdrop" hidden></div>
+  <section id="sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden></section>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

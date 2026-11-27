@@ -1,0 +1,48 @@
+/* 디자인 토큰: 색상·간격·글꼴은 여기서만 바꾸면 전체에 적용됩니다. */
+
+/* 고운돋움 글씨체 (SIL OFL 라이선스, fonts/OFL-GowunDodum.txt 참고). 파일로 내장되어 인터넷 없이도 동작 */
+@font-face {
+  font-family: "Gowun Dodum";
+  src: url("../fonts/GowunDodum-subset.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 싱글데이 (이전 선택, 필요하면 --font에서 다시 쓸 수 있음. 라이선스: fonts/OFL-SingleDay.txt) */
+@font-face {
+  font-family: "Single Day";
+  src: url("../fonts/SingleDay-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --bg: #0e1525;
+  --bg-soft: #141c30;
+  --card: #1b2233;
+  --card-line: #2a3349;
+  --ivory: #f2ebdd;
+  --ivory-dim: #b9b3a6;
+  --ivory-faint: #7c8194;
+  --gold: #c9b27c;
+  --gold-ink: #1a1608;
+  --danger: #d98a8a;
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --space-1: 6px;
+  --space-2: 12px;
+  --space-3: 18px;
+  --space-4: 24px;
+  --space-5: 36px;
+
+  --tap: 48px;
+  --tabbar-h: 64px;
+
+  /* 본문 글씨체: 고운돋움. 바꾸려면 이 줄만 수정 */
+  --font: "Gowun Dodum", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Segoe UI", sans-serif;
+  --font-brand: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Roboto,
+    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
