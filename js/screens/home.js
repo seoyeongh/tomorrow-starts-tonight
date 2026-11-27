@@ -203,7 +203,7 @@ function bindHome(root, ctx, s, plan) {
 
   root.querySelector('[data-act="compare"]').onclick = () => ctx.go("compare");
   root.querySelector('[data-act="confirm"]').onclick = () => {
-    if (plan.ok) change(root, ctx, { confirmed: { bed: plan.bed, wake: plan.wake, sleepMin: plan.sleepMin } });
+    if (plan.ok) change(root, ctx, { confirmed: { bed: plan.bed, wake: plan.wake, sleepMin: plan.sleepMin } }, { reveal: "#routine" });
   };
 }
 
@@ -237,9 +237,15 @@ function bindHomeWheels(root, ctx, plan) {
   make("wake", plan.wake);
 }
 
-function change(root, ctx, patch) {
+function change(root, ctx, patch, { reveal } = {}) {
+  const y = window.scrollY; // 다시 그려도 보던 위치 유지
   update(patch);
   renderHome(root, ctx);
+  window.scrollTo(0, y);
+  if (reveal) {
+    const el = root.querySelector(reveal);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 }
 
 /* ---------- 일정 편집 시트 ---------- */
