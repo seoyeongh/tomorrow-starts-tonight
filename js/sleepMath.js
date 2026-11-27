@@ -81,6 +81,11 @@ export function calcPlan(state) {
   return { ok: true, wake, bed: calcBed(wake, sleepMin, latency), sleepMin, latency, driver };
 }
 
+/** 비교 탭용: 여러 수면 시간 각각의 취침 시각 계산. 반환: [{ sleepMin, bed }] */
+export function compareOptions(wakeMin, latency, mins) {
+  return mins.map((m) => ({ sleepMin: m, bed: calcBed(wakeMin, m, latency) }));
+}
+
 function toInt(v) {
   const n = Math.round(Number(v));
   return Number.isFinite(n) && n > 0 ? n : 0;

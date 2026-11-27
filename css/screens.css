@@ -141,3 +141,29 @@
 .wheel-list:focus-visible { outline: none; }
 .wheel:focus-within::before { border-color: var(--gold); }
 .plan-flash { color: var(--gold); }
+
+/* 비교 탭 */
+.cmp-base { font-size: 14px; color: var(--ivory-dim); margin: -6px 0 var(--space-3); overflow-wrap: anywhere; }
+.cmp-base strong { font-family: var(--font-brand); font-size: 17px; font-weight: 500; color: var(--ivory); letter-spacing: 0.04em; }
+.cmp-list { display: flex; flex-direction: column; gap: var(--space-2); }
+.cmp-card {
+  display: block; width: 100%; text-align: left; color: inherit;
+  background: var(--card); border: 1px solid var(--card-line); border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.cmp-card.is-selected { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+.cmp-head { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); }
+.cmp-title { font-size: 18px; }
+.cmp-dur { margin-left: 6px; color: var(--gold); }
+.cmp-check { font-size: 13px; color: var(--gold-ink); background: var(--gold); border-radius: 999px; padding: 1px 10px; white-space: nowrap; }
+.cmp-bed { display: flex; align-items: baseline; gap: var(--space-2); margin: var(--space-2) 0; }
+.cmp-bed small { font-size: 13px; color: var(--ivory-faint); }
+.cmp-bed strong { font-family: var(--font-brand); font-size: 30px; font-weight: 500; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.cmp-bar { height: 6px; border-radius: 999px; background: var(--bg-soft); overflow: hidden; }
+.cmp-bar span { display: block; height: 100%; background: var(--gold); border-radius: 999px; }
+.cmp-note { margin-top: var(--space-2); font-size: 13px; color: var(--ivory-dim); }
+.cmp-custom { cursor: pointer; }
+.cmp-custom-ctl { display: flex; align-items: center; gap: var(--space-1); margin-top: var(--space-3); }
+.cmp-custom-ctl .btn { width: var(--tap); padding: 0; font-size: 22px; flex: none; }
+.cmp-sel { flex: 1; min-width: 0; }
+.cmp-sel .input { padding: 0 6px; }
