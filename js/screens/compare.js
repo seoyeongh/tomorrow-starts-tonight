@@ -144,6 +144,9 @@ function bindCompare(root, ctx, plan, customMin) {
     const p = calcPlan(s);
     if (p.ok) update({ confirmed: { bed: p.bed, wake: p.wake, sleepMin: p.sleepMin } });
     ctx.go("home");
+    // 홈은 맨 위부터 그려지므로, 정한 뒤에는 "취침 전 안내" 카드가 보이도록 내려 줌
+    const card = p.ok && document.getElementById("routine");
+    if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
   };
   root.querySelector('[data-act="home"]').onclick = () => ctx.go("home");
 }
